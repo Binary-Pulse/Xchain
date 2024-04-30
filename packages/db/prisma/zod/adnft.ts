@@ -1,5 +1,5 @@
-import * as z from "zod";
-import { CompleteProject, relatedProjectSchema } from "./index";
+import * as z from "zod"
+import { CompleteProject, relatedProjectSchema } from "./index"
 
 export const adNftSchema = z.object({
   id: z.string(),
@@ -11,10 +11,10 @@ export const adNftSchema = z.object({
   projectId: z.string(),
   createdAt: z.date(),
   updatedAt: z.date(),
-});
+})
 
 export interface CompleteAdNft extends z.infer<typeof adNftSchema> {
-  nftProject?: CompleteProject | null;
+  nftProject?: CompleteProject | null
 }
 
 /**
@@ -22,8 +22,6 @@ export interface CompleteAdNft extends z.infer<typeof adNftSchema> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const relatedAdNftSchema: z.ZodSchema<CompleteAdNft> = z.lazy(() =>
-  adNftSchema.extend({
-    nftProject: relatedProjectSchema.nullish(),
-  }),
-);
+export const relatedAdNftSchema: z.ZodSchema<CompleteAdNft> = z.lazy(() => adNftSchema.extend({
+  nftProject: relatedProjectSchema.nullish(),
+}))
